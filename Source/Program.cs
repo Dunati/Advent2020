@@ -12,7 +12,9 @@ public static class Runner {
     }
 
     public static void Main(string[] args) {
-        Trace.Listeners.Add(new ConsoleTraceListener());
+        if(!Debugger.IsAttached) {
+            Trace.Listeners.Add(new ConsoleTraceListener());
+        }
         Type type;
         int day = 0;
         int part = 0;
