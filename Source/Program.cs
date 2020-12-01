@@ -12,7 +12,7 @@ public static class Runner {
     }
 
     public static void Main(string[] args) {
-
+        Trace.Listeners.Add(new ConsoleTraceListener());
         Type type;
         int day = 0;
         int part = 0;
@@ -23,9 +23,18 @@ public static class Runner {
                 return;
             }
 
-            day = int.Parse(args[0]);
-            if (args.Length > 1) {
-                part = int.Parse(args[1]);
+            if (!int.TryParse(args[0], out day)) {
+                Trace.WriteLine($"Cannot parse {args[0]} as a day number");
+                return;
+            }
+            if (args.Length > 1 && !int.TryParse(args[1], out part)) {
+                Trace.WriteLine($"Cannot parse {args[1]} as a part number");
+                return;
+            }
+
+            if(part <0 || part > 2) {
+                Trace.WriteLine($"part {part} is not a valid part number");
+                return;
             }
         }
         if (day == 0) {
@@ -33,6 +42,10 @@ public static class Runner {
         }
         else {
             type = Assembly.GetExecutingAssembly().GetType($"Day{day:00}");
+            if (type == null) {
+                Trace.WriteLine($"Cannot find class Day{day:00} specified on the command line");
+                return;
+            }
         }
 
         Run(type, part);
