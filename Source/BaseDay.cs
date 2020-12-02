@@ -5,8 +5,9 @@ using System.IO;
 class BaseDay {
     public virtual string Run(int part, string rawData) => "Not Implemented";
 
-
+    protected Stopwatch Stopwatch;
     public string Run(int part) {
+        Stopwatch = Stopwatch.StartNew();
         string partName = $"Source/Days/{Name}/input{part}.txt";
         if (!File.Exists(partName)) {
             partName = $"Source/Days/{Name}/input1.txt";
@@ -16,7 +17,19 @@ class BaseDay {
             }
         }
 
-        return Run(part, File.ReadAllText(partName));
+        string result = Run(part, File.ReadAllText(partName));
+        if (Stopwatch != null) {
+            Trace.WriteLine($"\n  Solution: {Stopwatch.Elapsed.TotalMilliseconds}ms");
+            Stopwatch = null;
+        }
+        return result;
+    }
+
+    protected void DoneParsing() {
+        if (Stopwatch != null) {
+            Trace.Write($"\n  Parsing:  {Stopwatch.Elapsed.TotalMilliseconds}ms");
+            Stopwatch.Restart();
+        }
     }
 
     public string TestInput(int part, int testNum) {

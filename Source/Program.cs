@@ -76,7 +76,7 @@ public static class Runner {
     static void RunPart(BaseDay day, int part) {
         Trace.Write($"Running {day.Name}-{part} ");
         if (day.RunTests(part)) {
-            Trace.WriteLine($"\n  result: {day.Run(part)}\n");
+            Trace.WriteLine($"  result: {day.Run(part)}\n");
         }
     }
 
