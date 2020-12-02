@@ -9,6 +9,9 @@ public static class Runner {
         foreach (Type t in Assembly.GetExecutingAssembly().GetTypes().Where(x => x.Name.StartsWith("Day")).OrderBy(x => x.Name)) {
             Run(t, 0);
         }
+        foreach (Type t in Assembly.GetExecutingAssembly().GetTypes().Where(x => x.Name.StartsWith("_Day")).OrderBy(x => x.Name)) {
+            Run(t, 0);
+        }
     }
 
     public static void Main(string[] args) {

@@ -72,7 +72,7 @@ class BaseDay {
         }
     }
 
-    public string Name { get => this.GetType().Name; }
+    public string Name { get => this.GetType().Name.TrimStart('_'); }
 
     public int Part { get => 0; }
 
