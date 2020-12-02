@@ -49,7 +49,6 @@ public static class Runner {
                 return;
             }
         }
-
         Run(type, part);
     }
 
