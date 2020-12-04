@@ -75,10 +75,10 @@ class Day04 : BaseDay {
             var allFields = new SortedSet<string>(AllFields.Keys);
 
             foreach (var field in fields) {
-                 string[] nameValue = field.Split(':');
+                var (name, value, _) = field.Split(':');
 
-                if (part == 1 || AllFields[nameValue[0]](nameValue[1])) {
-                    allFields.Remove(nameValue[0]);
+                if (part == 1 || AllFields[name](value)) {
+                    allFields.Remove(name);
                 }
             }
 
