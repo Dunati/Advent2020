@@ -13,18 +13,18 @@ class Day05 : BaseDay {
     }
 
     public override string Run(int part, string rawData) {
-        if (part == 1) { 
-            return rawData.Lines().Select(SeatId).Max().ToString(); 
+        if (part == 1) {
+            return rawData.Lines().Select(SeatId).Max().ToString();
         }
         else {
             SortedSet<int> filled = new SortedSet<int>();
 
 
-            bool done = rawData.Lines().Select(SeatId).Select(filled.Add).Aggregate((x, y) => x^y);
+            bool done = rawData.Lines().Select(SeatId).Select(filled.Add).Aggregate((x, y) => x ^ y);
 
             int last = filled.First();
-            foreach(int i in filled) {
-                if(i == last + 2) {
+            foreach (int i in filled) {
+                if (i == last + 2) {
                     return (i - 1).ToString();
                 }
                 last = i;
@@ -34,8 +34,11 @@ class Day05 : BaseDay {
         }
     }
 
+
+
     int Seek(int low, int high, string map, char lower) {
-        for (int i = 0; i < map.Length - 1; i++) {
+
+        for (int i = 0; i < map.Length; i++) {
             char c = map[i];
             if (c == lower) {
                 high = (high + low) / 2;
@@ -44,10 +47,7 @@ class Day05 : BaseDay {
                 low = (high + low) / 2 + 1;
             }
         }
-        if (map.Last() == lower) {
-            return low;
-        }
-        return high;
+        return low;
     }
 
 }
