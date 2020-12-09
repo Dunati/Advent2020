@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-class BaseDay {
+public class BaseDay {
     public virtual string Run(int part, string rawData) => "Not Implemented";
 
     protected Stopwatch Stopwatch;
