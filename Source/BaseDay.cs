@@ -17,7 +17,7 @@ public class BaseDay {
             }
         }
 
-        string result = Run(part, File.ReadAllText(partName));
+        string result = Run(part, File.ReadAllText(partName), false);
         if (Stopwatch != null) {
             Trace.WriteLine($"\n  Solution: {Stopwatch.Elapsed.TotalMilliseconds}ms");
             Stopwatch = null;
@@ -56,6 +56,7 @@ public class BaseDay {
         return File.ReadAllText(testName);
     }
 
+    public virtual string Run(int part, string rawData, bool isTest) => Run(part, rawData);
 
     public bool RunTests(int part) {
         int testNum = Test == 0 ? 1 : Test;
@@ -68,7 +69,7 @@ public class BaseDay {
 
             try {
                 string input = TestInput(part, testNum);
-                string result = Run(part, input);
+                string result = Run(part, input, true);
                 if (result != expected) {
                     throw new Exception($"Test Failed: expected '{expected}', received '{result}'");
                 }
