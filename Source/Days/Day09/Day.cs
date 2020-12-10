@@ -76,6 +76,16 @@ class Day09 : BaseDay {
         return 0;
     }
 
+
+
+    public long Part2(long sum, long target, Span<long> values, int first, int last) {
+        return ((sum + values[last]) - target) switch {
+            < 0 => Part2(sum+values[last], target, values, first, last + 1),
+            > 0 => Part2(sum-values[first], target, values, first + 1, last),
+            _ => values.Slice(first, last - first).Min() + values.Slice(first, last - first).Max()
+        };
+    }
+
     public override string Run(int part, string rawData, bool isTest) {
         int preamble = 25;
         if (isTest) {
@@ -87,6 +97,10 @@ class Day09 : BaseDay {
         if (part == 1) {
             return value.ToString();
         }
+
+
+
+        Trace.WriteLine(Part2(0, value, rawData.Lines().Select(x => long.Parse(x)).ToArray(), 0, 0));
 
         Queue<long> numbers = new Queue<long>();
 
@@ -118,7 +132,7 @@ class Day09 : BaseDay {
         }
 
 
-        return (numbers.Min()+numbers.Max()).ToString();
+        return (numbers.Min() + numbers.Max()).ToString();
 
     }
 }

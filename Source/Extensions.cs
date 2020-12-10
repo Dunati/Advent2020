@@ -25,4 +25,23 @@ public static class Extensions {
         second = list.Count > 1 ? list[1] : default(T); // or throw
         rest = list.Skip(2).ToList();
     }
+
+    public static T Min<T>(this Span<T> value) where T:IComparable<T> {
+        T min = value[0];
+        for (int i = 1; i < value.Length; i++) {
+            if (value[i].CompareTo(min) < 0) {
+                min = value[i];
+            }
+        }
+        return min;
+    }
+    public static T Max<T>(this Span<T> value) where T:IComparable<T>  {
+        T max = value[0];
+        for (int i = 1; i < value.Length; i++) {
+            if (value[i].CompareTo(max) > 0 ) {
+                max = value[i];
+            }
+        }
+        return max;
+    }
 }
