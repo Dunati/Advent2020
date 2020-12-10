@@ -17,7 +17,15 @@ public class BaseDay {
             }
         }
 
-        string result = Run(part, File.ReadAllText(partName), false);
+        string result = "";
+
+//         result = Run(part, File.ReadAllText(partName), false);
+//         result = Run(part, File.ReadAllText(partName), false);
+//         result = Run(part, File.ReadAllText(partName), false);
+//         result = Run(part, File.ReadAllText(partName), false);
+//         result = Run(part, File.ReadAllText(partName), false);
+//         Stopwatch = Stopwatch.StartNew();
+        result = Run(part, File.ReadAllText(partName), false);
         if (Stopwatch != null) {
             Trace.WriteLine($"\n  Solution: {Stopwatch.Elapsed.TotalMilliseconds}ms");
             Stopwatch = null;
