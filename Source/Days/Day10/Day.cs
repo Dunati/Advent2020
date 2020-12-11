@@ -55,8 +55,13 @@ class Day10 : BaseDay {
     }
 
 
+    static long Choose(int n, int r) {
+        return Factorial.Lookup(n) / (Factorial.Lookup(r) * Factorial.Lookup(n - r));
+    }
+
 
     static long CalculateCombinations(int length) {
+        Trace.Write($"{length},");
         long count = 0;
 
         if (length < 5) {
@@ -64,7 +69,7 @@ class Day10 : BaseDay {
         }
 
         for (int i = 1; i <= length - 2; i++) {
-            count += Factorial.Lookup(length - 2) / (Factorial.Lookup(i) * Factorial.Lookup(length - 2 - i));
+            count += Choose(length - 2, i);
         }
 
         return count;
@@ -99,6 +104,7 @@ class Day10 : BaseDay {
             first = last;
             last = first + 1;
         }
+
 
         return combinations.ToString(); ;
     }
