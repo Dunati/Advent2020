@@ -75,9 +75,21 @@ class Day10 : BaseDay {
         return count;
     }
 
+    static string MyToString(int x) {
+        return x.ToString();
+    }
+
 
 
     public override string Run(int part, string rawData) {
+
+        var one = (Func<int, string>)Convert.ToString;
+        var two = (Func<int, string>)MyToString;
+
+        Func<int, string> three = x => x.ToString();
+
+
+        int[] nums = rawData.Lines().Select((Func<string, int>)Convert.ToInt32).Select(two).Select((Func<string, int>)Convert.ToInt32).ToArray();
 
         var jolts = rawData.ToIntArray();
         Array.Sort(jolts);
