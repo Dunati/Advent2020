@@ -3,32 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-class Day09 : BaseDay {
 
-    class DefaultDictionary {
-
-        public bool ContainsKey(long index) {
-            return entries.ContainsKey(index);
-        }
-
-        public long this[long index] {
-            get {
-                long value = 0;
-                entries.TryGetValue(index, out value);
-                return value;
-            }
-            set {
-                if (value == 0) {
-                    entries.Remove(index);
-                }
-                else {
-                    entries[index] = value;
-                }
-            }
-        }
-
-        private Dictionary<long, long> entries = new Dictionary<long, long>();
-    }
+partial class Day09 : BaseDay {
 
 
 
@@ -44,7 +20,7 @@ class Day09 : BaseDay {
         }
         oldest = 0;
 
-        DefaultDictionary sums = new DefaultDictionary();
+        var sums = new DefaultDictionary<long,long>();
 
         for (int i = 0; i < preamble - 1; i++) {
             for (int j = 0; j < preamble; j++) {
